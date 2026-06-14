@@ -71,10 +71,10 @@ function Landing() {
         </div>
 
         <div className="mx-auto max-w-4xl text-center">
-          <div className="glass mx-auto inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted-foreground animate-fade-up">
+          {/* <div className="glass mx-auto inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted-foreground animate-fade-up">
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             AI-powered context transfer · Hackathon 2026
-          </div>
+          </div> */}
 
           <h1 className="font-display mt-6 text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl animate-fade-up [animation-delay:80ms]">
             Turn Failed AI Conversations
