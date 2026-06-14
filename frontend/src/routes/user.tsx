@@ -265,13 +265,13 @@ ticket?.alternativeSolutions || [];
           {/* MAIN SECTION */}
 
           <div className="space-y-6 lg:col-span-2">
-            <div className="glass rounded-2xl p-6">
-  <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
+            {/* <div className="glass rounded-2xl p-6"> */}
+  {/* <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
     <Sparkles className="h-3.5 w-3.5 text-primary" />
     AI Generated Alternative Solutions
-  </div>
+  </div> */}
 
-  {alternatives.length === 0 ? (
+  {/* {alternatives.length === 0 ? (
     <div className="mt-4">
       <p className="text-sm text-muted-foreground">
         No alternative solutions found.
@@ -332,8 +332,8 @@ ticket?.alternativeSolutions || [];
         </div>
       )}
     </>
-  )}
-</div>
+  )} */}
+{/* </div> */}
 
             {/* SUMMARY */}
 
@@ -354,6 +354,8 @@ ticket?.alternativeSolutions || [];
 
             {/* ALTERNATIVE SOLUTIONS */}
 
+{/* ALTERNATIVE SOLUTIONS */}
+
 <div className="glass rounded-2xl p-6">
   <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
     <Sparkles className="h-3.5 w-3.5 text-primary" />
@@ -362,16 +364,33 @@ ticket?.alternativeSolutions || [];
 
   {!showAlternatives ? (
     <div className="mt-4">
-      <p className="text-sm text-muted-foreground">
-        The AI has identified {alternatives.length} possible alternative solution(s)
-        before consulting an expert.
-      </p>
+      {alternatives.length > 0 ? (
+        <>
+          <p className="text-sm text-muted-foreground">
+            The AI has identified {alternatives.length} possible alternative
+            solution(s) before consulting an expert.
+          </p>
+
+          <button
+            onClick={() => setShowAlternatives(true)}
+            className="mt-4 rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground"
+          >
+            View Alternatives
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="text-sm text-muted-foreground">
+            No alternative solutions available.
+          </p>
+        </>
+      )}
 
       <button
-        onClick={() => setShowAlternatives(true)}
-        className="mt-4 rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground"
+        onClick={handleConnectToExpert}
+        className="mt-4 ml-3 rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground"
       >
-        View Alternatives
+        Connect To Expert
       </button>
     </div>
   ) : (
@@ -406,6 +425,15 @@ ticket?.alternativeSolutions || [];
           No alternative solutions available.
         </p>
       )}
+
+      <div className="pt-2">
+        <button
+          onClick={handleConnectToExpert}
+          className="rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground"
+        >
+          Connect To Expert
+        </button>
+      </div>
     </div>
   )}
 </div>
