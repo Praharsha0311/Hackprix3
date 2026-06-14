@@ -16,6 +16,7 @@ import {
   orderBy,
   limit
 } from "firebase/firestore";
+import VideoCall from "@/components/VideoCall";
 
 export const Route = createFileRoute("/user")({
   head: () => ({
@@ -40,6 +41,7 @@ const [showAlternatives, setShowAlternatives] = useState(false);
 const [showExpertSearch, setShowExpertSearch] = useState(false);
 const [isSearchingExperts, setIsSearchingExperts] = useState(false);
 const [connectingExpert, setConnectingExpert] = useState<any>(null);
+const [joinCall, setJoinCall] = useState(false);
 
 // const hardcodedExperts = [
 //   {
@@ -175,7 +177,12 @@ const handleConnectToExpert = () => {
   };
 
   
-if (connectingExpert) {
+if (joinCall) {
+  return (
+    <VideoCall roomName="skillnow-gate-demo" />
+  );
+}
+  if (connectingExpert) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050b2c] text-white">
       <div className="text-center max-w-xl px-6">
@@ -550,8 +557,12 @@ ticket?.alternativeSolutions || [];
 
                 <button
                   onClick={() => {
-                    setConnectingExpert(expert);
-                  }}
+  setConnectingExpert(expert);
+
+  setTimeout(() => {
+    setJoinCall(true);
+  }, 4000);
+}}
                   className="rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground"
                 >
                   Connect

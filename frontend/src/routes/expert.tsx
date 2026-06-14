@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Sidebar } from "@/components/Sidebar";
 import { ArrowLeft, Bell, CheckCircle2, Activity, TrendingUp } from "lucide-react";
 import { useState } from "react";
+import VideoCall from "@/components/VideoCall";
+
 
 export const Route = createFileRoute("/expert")({
   component: ExpertDashboard,
@@ -11,6 +13,7 @@ function ExpertDashboard() {
   const [available, setAvailable] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState<any>(null);
   const [connecting, setConnecting] = useState(false);
+  const [joinCall, setJoinCall] = useState(false);
 
   const requests = [
     {
@@ -19,7 +22,7 @@ function ExpertDashboard() {
       match: "97%",
       student: "Praharsha",
       level: "Beginner",
-      duration: "45 Minutes",
+      duration: "20 Minutes",
       summary:
         "Student wants structured guidance for GATE CSE preparation including study planning, DSA, Operating Systems, DBMS and Computer Networks."
     }
@@ -35,6 +38,11 @@ function ExpertDashboard() {
     // }
   ];
 
+  if (joinCall) {
+  return (
+    <VideoCall roomName="skillnow-gate-demo" />
+  );
+}
   if (connecting && selectedRequest) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#050b2c] text-white">
@@ -75,7 +83,6 @@ function ExpertDashboard() {
 
               <div>
                 <p className="text-xs text-muted-foreground">Welcome back</p>
-                <p className="font-semibold text-lg">Rahul Sharma</p>
               </div>
             </div>
 
@@ -140,9 +147,13 @@ function ExpertDashboard() {
 
                   <button
                     onClick={() => {
-                      setSelectedRequest(request);
-                      setConnecting(true);
-                    }}
+  setSelectedRequest(request);
+  setConnecting(true);
+
+  setTimeout(() => {
+    setJoinCall(true);
+  }, 4000);
+}}
                     className="mt-4 rounded-xl bg-primary px-5 py-2 text-primary-foreground"
                   >
                     Accept Request
