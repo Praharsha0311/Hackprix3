@@ -29,6 +29,12 @@ export const Route = createFileRoute("/user")({
 });
 
 function UserPortal() {
+  const handleConnectToVoiceAgent = () => {
+  window.open(
+    "https://cloud.livekit.io/projects/p_4jcv81qnd7a/agents/console?agentName=skillnow-mentor",
+    "_blank"
+  );
+};
   const [matched, setMatched] = useState(false);
   const [regenerating, setRegenerating] = useState(false);
 
@@ -392,6 +398,12 @@ ticket?.alternativeSolutions || [];
       >
         Connect To Expert
       </button>
+      <button
+    onClick={handleConnectToVoiceAgent}
+    className="rounded-xl border border-primary px-4 py-2 text-sm font-medium"
+  >
+    Talk To AI Mentor
+  </button>
     </div>
   ) : (
     <div className="mt-4 space-y-4">
